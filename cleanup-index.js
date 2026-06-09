@@ -1,0 +1,15 @@
+const fs = require('fs');
+const path = 'index.html';
+let text = fs.readFileSync(path, 'utf8');
+text = text.replace(/<link rel="preload" href="\.\/\_astro\/fonts[^\"]*" as="font" type="font\/woff2" crossorigin="">/g, '');
+text = text.replace(/<script defer="" data-domain="playSummit\.com" src="js\/script\.js"><\/script>/g, '');
+text = text.replace(/<script type="module" src="js\/ClientRouter\.astro_astro_type_script_index_0_lang\.BoP735Sf\.js"><\/script>/g, '');
+text = text.replace(/<script type="module" src="js\/page\.Bvd8y6vF\.js"><\/script>/g, '');
+text = text.replace(/<script type="module" src="js\/index\.astro_astro_type_script_index_0_lang\.UXDAuEjt\.js"><\/script>/g, '');
+text = text.replace(/<script type="module">let L,m;document\.addEventListener\("astro:page-load",\(\)=>\{([\s\S]*?)\}\);<\/script>/g, '<script type="module">(function(){ $1 })();</script>');
+text = text.replace(/<style>astro-island,astro-slot,astro-static-slot\{display:contents\}<\/style><script>\(\(\)=>\{[\s\S]*?<\/astro-island>/g, 'Summit STUDIOS');
+text = text.replace('content="https://playSummit.com/_image?href=%2F_astro%2FSummit-logo._osHcMkn.png&w=256&h=256&f=webp"', 'content="images/summit-logo._osHcMkn.png"');
+text = text.replace(/href="\.\/_astro\/[^"]*"/g, '');
+text = text.replace(/content="https:\/\/playSummit\.com\/_image\?href=%2F_astro%2F[^"]*"/g, 'content="images/_image.png"');
+fs.writeFileSync(path, text, 'utf8');
+console.log('index.html updated');
